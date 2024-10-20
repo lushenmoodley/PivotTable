@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Pivot Table Example";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Pivot Table Example</h2>
+            <div id="pivot-output" class="mt-3"></div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+    <!-- jQuery 3.4.1 (or any version you are using) -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- jQuery UI (required for drag-and-drop/sortable functionality) -->
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- PivotTable.js CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/pivottable@2.23.0/dist/pivot.min.css" rel="stylesheet">
+
+    <!-- PivotTable.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/pivottable@2.23.0/dist/pivot.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            var data = @Html.Raw(ViewBag.PivotData);
+
+            // Initialize the pivot table using PivotTable.js
+            $("#pivot-output").pivotUI(data, {
+                rows: ["Gender"],
+                cols: ["Age"]
+            });
+        });
+    </script>
+}
+
